@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tokoku.id</string>
+    <string name="produk">Produk</string>
+    <string name="baru">Baru</string>
+    <string name="tampilkan_semua">Tampilkan Semua</string>
+    <string name="search">Search</string>
+</resources>
