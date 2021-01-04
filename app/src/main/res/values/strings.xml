@@ -2,6 +2,23 @@
     <string name="app_name">Tokoku.id</string>
     <string name="produk">Produk</string>
     <string name="baru">Baru</string>
-    <string name="tampilkan_semua">Tampilkan Semua</string>
     <string name="search">Search</string>
+    <string name="home_fragment">home</string>
+    <string name="chatting_fragment">Chatting</string>
+    <string name="feed_fragment">Feed</string>
+    <string name="profile_fragment">Profile</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="tambah_ke_keranjang">Tambah ke keranjang</string>
+    <string name="total_berat">Total Berat</string>
+    <string name="berat">Berat :</string>
+    <string name="asal">Asal</string>
+    <string name="mataram">Mataram</string>
+    <string name="tujuan">Tujuan</string>
+    <string name="pilih"><![CDATA[Pilih >]]></string>
+    <string name="kurir_pengiriman">Kurir Pengiriman</string>
+    <string name="biaya_kirim">Biaya Kirim</string>
+    <string name="total_harga">Total Harga</string>
+    <string name="product_image">Product Image</string>
+    <string name="keranjang">Keranjang</string>
+
 </resources>

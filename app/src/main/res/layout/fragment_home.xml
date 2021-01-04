@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/SizeTextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+    <EditText
+        android:id="@+id/searchtext"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/searchview"
+        android:ellipsize="end"
+        android:hint="@string/search"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingHorizontal="7dp"
+        android:scrollHorizontally="true"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/title"
+        app:layout_constraintTop_toTopOf="@id/title" />
+
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/GrayColor"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchtext"
+        app:layout_constraintLeft_toRightOf="@id/searchtext"
+        app:layout_constraintTop_toTopOf="@id/searchtext"
+        android:contentDescription="@string/search" />
+
+    <ImageButton
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/button_container"
+        android:padding="4dp"
+        android:src="@drawable/ic_baseline_shopping_cart_24"
+        app:layout_constraintBottom_toBottomOf="@id/searchtext"
+        app:layout_constraintLeft_toRightOf="@id/search_button"
+        app:layout_constraintTop_toTopOf="@id/searchtext"
+        android:contentDescription="Keranjang" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/newproduct"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="4dp"
+        app:layout_constraintLeft_toLeftOf="@id/toolbar"
+        app:layout_constraintRight_toRightOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/image_container"
+        android:elevation="4dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/newproduct"
+        app:layout_constraintLeft_toLeftOf="@id/newproduct"
+        app:layout_constraintTop_toTopOf="@id/newproduct">
+
+        <ImageView
+            android:id="@+id/new_product_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/product_image" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/introducting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:text="@string/baru"
+        app:layout_constraintLeft_toRightOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <TextView
+        android:id="@+id/new_name_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/introducting"
+        app:layout_constraintRight_toRightOf="@id/newproduct"
+        app:layout_constraintTop_toBottomOf="@id/introducting"
+        tools:text="Jaket JOkwokwhny ANcient Kawe"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:elevation="4dp"
+        android:ellipsize="end"
+        />
+
+    <View
+        android:id="@+id/bottomsheet"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bottom_sheet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingBottom="60dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newproduct" />
+
+
+    <TextView
+        android:id="@+id/product"
+        style="@style/SizeTextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/produk"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/bottomsheet"
+        app:layout_constraintTop_toTopOf="@id/bottomsheet" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_product"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/bottomsheet"
+        app:layout_constraintRight_toRightOf="@id/bottomsheet"
+        app:layout_constraintTop_toBottomOf="@id/product"
+        tools:listitem="@layout/item_product" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
