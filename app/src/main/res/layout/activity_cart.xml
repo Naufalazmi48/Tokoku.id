@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="@string/total_berat"
         app:layout_constraintLeft_toRightOf="@id/left_divider"
         app:layout_constraintTop_toTopOf="@id/left_divider" />
@@ -167,14 +167,44 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:paddingEnd="10dp"
         android:maxLines="2"
         android:textStyle="bold"
-        android:textColor="@color/DarkGray"
+        android:textColor="@color/white"
+        android:background="@color/DarkGray"
         android:textAlignment="textEnd"
         app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintTop_toTopOf="@id/courier"
-        tools:text="Jasa Nugraha Express (JNE)"
+        android:text="@string/pilih"
+        />
+
+
+    <TextView
+        android:id="@+id/type_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/jenis_pengiriman"
+        app:layout_constraintLeft_toRightOf="@id/left_divider"
+        app:layout_constraintTop_toBottomOf="@id/courier_product"/>
+
+    <TextView
+        android:id="@+id/type_send_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:paddingEnd="10dp"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/DarkGray"
+        android:textAlignment="textEnd"
+        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+        app:layout_constraintRight_toLeftOf="@id/right_divider"
+        app:layout_constraintTop_toTopOf="@id/type_send"
+        android:text="@string/pilih"
         />
 
     <TextView
@@ -185,7 +215,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/biaya_kirim"
         app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/courier_product"/>
+        app:layout_constraintTop_toBottomOf="@id/type_send_product"/>
 
     <TextView
         android:id="@+id/price_send"
@@ -225,6 +255,15 @@
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintTop_toTopOf="@id/total"
         tools:text="Rp.1.500.000"
+        />
+
+    <Button
+        android:id="@+id/buy_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bayar_sekarang"
+        app:layout_constraintRight_toLeftOf="@id/right_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

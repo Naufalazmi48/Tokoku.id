@@ -20,5 +20,10 @@
     <string name="total_harga">Total Harga</string>
     <string name="product_image">Product Image</string>
     <string name="keranjang">Keranjang</string>
+    <string name="jenis_pengiriman">Jenis Pengiriman</string>
+    <string name="bayar_sekarang">Bayar Sekarang</string>
+    <string name="pilih_provinsi">Pilih Provinsi</string>
+    <string name="pilih_kurir">Pilih Kurir</string>
+    <string name="pilih_tipe">Pilih Tipe Pengiriman</string>
 
 </resources>
