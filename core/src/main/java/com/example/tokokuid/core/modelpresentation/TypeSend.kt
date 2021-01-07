@@ -1,4 +1,4 @@
-package com.example.tokokuid.model
+package com.example.tokokuid.core.modelpresentation
 
 data class TypeSend(
     val type:String? = null,

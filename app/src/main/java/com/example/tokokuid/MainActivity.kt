@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.tokokuid.adapter.SectionPagerAdapter
 import com.example.tokokuid.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

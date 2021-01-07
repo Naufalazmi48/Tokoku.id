@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    tools:context=".DetailActivity">
+    tools:context=".detail.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@id/image_container"
             app:layout_constraintLeft_toLeftOf="@id/image_container"
             app:layout_constraintRight_toRightOf="@id/image_container"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/DarkGray"
             android:textStyle="bold"
             style="@style/SizeTextViewTitle"
@@ -128,6 +128,7 @@
             app:layout_constraintLeft_toLeftOf="@id/image_container"
             app:layout_constraintRight_toRightOf="@id/image_container"
             android:text="@string/tambah_ke_keranjang"
+            android:layout_marginBottom="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

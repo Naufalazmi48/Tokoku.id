@@ -3,10 +3,6 @@
     <string name="produk">Produk</string>
     <string name="baru">Baru</string>
     <string name="search">Search</string>
-    <string name="home_fragment">home</string>
-    <string name="chatting_fragment">Chatting</string>
-    <string name="feed_fragment">Feed</string>
-    <string name="profile_fragment">Profile</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="tambah_ke_keranjang">Tambah ke keranjang</string>
     <string name="total_berat">Total Berat</string>
@@ -25,5 +21,9 @@
     <string name="pilih_provinsi">Pilih Provinsi</string>
     <string name="pilih_kurir">Pilih Kurir</string>
     <string name="pilih_tipe">Pilih Tipe Pengiriman</string>
+    <string name="home_fragment">home</string>
+    <string name="chatting_fragment">Chatting</string>
+    <string name="feed_fragment">Feed</string>
+    <string name="profile_fragment">Profile</string>
 
 </resources>

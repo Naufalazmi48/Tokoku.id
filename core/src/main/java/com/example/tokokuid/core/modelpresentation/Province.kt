@@ -1,4 +1,4 @@
-package com.example.tokokuid.model
+package com.example.tokokuid.core.modelpresentation
 
 data class Province(
     var name_province:String? = null,

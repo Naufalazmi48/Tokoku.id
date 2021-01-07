@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".home.HomeFragment">
 
 
     <Toolbar
@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toBottomOf="@id/searchtext"
         app:layout_constraintLeft_toRightOf="@id/search_button"
         app:layout_constraintTop_toTopOf="@id/searchtext"
-        android:contentDescription="Keranjang" />
+        android:contentDescription="@string/keranjang" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/newproduct"

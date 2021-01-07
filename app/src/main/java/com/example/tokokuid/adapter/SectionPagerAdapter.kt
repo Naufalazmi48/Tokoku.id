@@ -1,4 +1,4 @@
-package com.example.tokokuid
+package com.example.tokokuid.adapter
 
 import android.content.Context
 import androidx.annotation.Nullable
@@ -6,6 +6,11 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.tokokuid.R
+import com.example.tokokuid.chat.ChattingFragment
+import com.example.tokokuid.feed.FeedFragment
+import com.example.tokokuid.home.HomeFragment
+import com.example.tokokuid.profile.ProfileFragment
 
 class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     @StringRes
