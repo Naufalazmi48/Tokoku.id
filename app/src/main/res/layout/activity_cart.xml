@@ -8,6 +8,7 @@
 
     <ImageButton
         android:id="@+id/back"
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_arrow_back_24"
@@ -71,6 +72,7 @@
         android:id="@+id/rv_cart"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         android:layout_margin="10dp"
         tools:listitem="@layout/item_cart"
         app:layout_constraintBottom_toTopOf="@id/mid_divider"
@@ -79,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@id/back" />
 
     <TextView
-        android:id="@+id/weight_product"
+        android:id="@+id/weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -89,6 +91,7 @@
         app:layout_constraintTop_toTopOf="@id/left_divider" />
 
     <TextView
+        android:id="@+id/weight_product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -98,7 +101,7 @@
         android:textAlignment="textEnd"
         android:textColor="@color/DarkGray"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/weight_product"
+        app:layout_constraintTop_toTopOf="@id/weight"
         tools:text="2Kg"
         />
 
@@ -110,7 +113,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/asal"
         app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/weight_product"/>
+        app:layout_constraintTop_toBottomOf="@id/weight"/>
 
     <TextView
         android:layout_width="0dp"
@@ -140,6 +143,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:enabled="false"
+        android:onClick="onClick"
         android:paddingEnd="10dp"
         android:maxLines="2"
         android:textStyle="bold"
@@ -167,6 +172,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:enabled="false"
+        android:onClick="onClick"
         android:paddingEnd="10dp"
         android:maxLines="2"
         android:textStyle="bold"
@@ -195,7 +202,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:enabled="false"
         android:paddingEnd="10dp"
+        android:onClick="onClick"
         android:maxLines="2"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -261,10 +270,25 @@
         android:id="@+id/buy_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="onClick"
         android:text="@string/bayar_sekarang"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="10dp"
         />
 
+    <TextView
+        android:id="@+id/nullCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/rv_cart"
+        app:layout_constraintRight_toRightOf="@id/rv_cart"
+        app:layout_constraintTop_toTopOf="@id/rv_cart"
+        app:layout_constraintBottom_toBottomOf="@id/rv_cart"
+        android:textAlignment="center"
+        android:textColor="@color/DarkGray"
+        android:text="@string/keranjang_kosong"
+        android:textSize="20sp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

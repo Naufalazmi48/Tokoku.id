@@ -25,5 +25,6 @@
     <string name="chatting_fragment">Chatting</string>
     <string name="feed_fragment">Feed</string>
     <string name="profile_fragment">Profile</string>
+    <string name="keranjang_kosong">Keranjang Kosong</string>
 
 </resources>

@@ -18,7 +18,7 @@ import com.example.tokokuid.detail.DetailActivity
 
 class HomeFragment : Fragment() {
 
-    private var mAdapter = HomeAdapter() //Change to KOIN
+    private lateinit var mAdapter: HomeAdapter
     private val data = DataDummy.getClothes().reversed()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -29,38 +29,46 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        mAdapter.setData(data)
-        newItem(data.first())
-        mAdapter.onItemClick = {
-            startActivity(Intent(context, DetailActivity::class.java).putExtra(DetailActivity.EXTRA_DATA,it))
-        }
-        with(binding.rvProduct) {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = mAdapter
-        }
-        binding.cart.setOnClickListener {
-            startActivity(Intent(context, CartActivity::class.java))
-        }
-        binding.searchtext.addTextChangedListener {
-            if(it.isNullOrEmpty()){
-                mAdapter.setData(data)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(activity != null){
+            mAdapter = HomeAdapter()
+            mAdapter.setData(data)
+            newItem(data.first())
+            mAdapter.onItemClick = {
+                startActivity(Intent(context, DetailActivity::class.java).putExtra(DetailActivity.EXTRA_DATA,it))
             }
-        }
-        binding.searchButton.setOnClickListener {
-            if(!binding.searchtext.text.isNullOrEmpty()){
-                val result = ArrayList<Item>()
-                for (item in data){
-                    val name = item.name_item
-                    if((name != null) && name.contains(binding.searchtext.text.toString(),true)){
-                        result.add(item)
+            with(binding.rvProduct) {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = mAdapter
+            }
+            binding.cart.setOnClickListener {
+                startActivity(Intent(context, CartActivity::class.java))
+            }
+            binding.searchtext.addTextChangedListener {
+                if(it.isNullOrEmpty()){
+                    mAdapter.setData(data)
+                }
+            }
+            binding.searchButton.setOnClickListener {
+                if(!binding.searchtext.text.isNullOrEmpty()){
+                    val result = ArrayList<Item>()
+                    for (item in data){
+                        val name = item.name_item
+                        if((name != null) && name.contains(binding.searchtext.text.toString(),true)){
+                            result.add(item)
+                        }
+                    }
+                    if(!result.isNullOrEmpty()){
+                        mAdapter.setData(result)
                     }
                 }
-                if(!result.isNullOrEmpty()){
-                    mAdapter.setData(result)
-                }
             }
         }
-        return binding.root
     }
 
     override fun onDestroyView() {
