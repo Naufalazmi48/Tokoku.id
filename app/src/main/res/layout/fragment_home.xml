@@ -44,7 +44,8 @@
         android:scrollHorizontally="true"
         android:textColor="@color/white"
         app:layout_constraintLeft_toRightOf="@id/title"
-        app:layout_constraintTop_toTopOf="@id/title" />
+        app:layout_constraintTop_toTopOf="@id/title"
+        tools:ignore="Autofill" />
 
     <ImageButton
         android:id="@+id/search_button"
@@ -161,6 +162,8 @@
         app:layout_constraintLeft_toLeftOf="@id/bottomsheet"
         app:layout_constraintRight_toRightOf="@id/bottomsheet"
         app:layout_constraintTop_toBottomOf="@id/product"
-        tools:listitem="@layout/item_product" />
+        tools:listitem="@layout/item_product"
+        tools:ignore="RtlSymmetry" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
