@@ -3,7 +3,6 @@ package com.example.tokokuid.core.data.source.local
 import com.example.tokokuid.core.data.source.local.entity.CartEntity
 import com.example.tokokuid.core.data.source.local.entity.CityEntity
 import com.example.tokokuid.core.data.source.local.room.TokoDAO
-import com.example.tokokuid.core.domain.model.CityDomain
 import kotlinx.coroutines.flow.Flow
 
 

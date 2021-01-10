@@ -10,6 +10,7 @@ import com.example.tokokuid.core.domain.model.CostDomain
 import com.example.tokokuid.core.domain.model.CostItemDomain
 import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.core.modelpresentation.City
+import com.example.tokokuid.core.modelpresentation.TypeSend
 
 object DataMapper {
 
@@ -79,12 +80,14 @@ object DataMapper {
     fun mapCityDomainToPresentation(list: List<CityDomain>?): List<City> {
         val listCity = ArrayList<City>()
         list?.map {
-            listCity.add(
-                City(
-                    it.cityName,
-                    it.cityId
+            if(it.cityName != null && it.cityId != null){
+                listCity.add(
+                    City(
+                        it.cityName,
+                        it.cityId
+                    )
                 )
-            )
+            }
         }
         return listCity
     }
@@ -106,9 +109,10 @@ object DataMapper {
         return listCity
     }
 
-    fun mapCostResponseToDomain(cost: CostResponse): CostDomain {
-        val costDomain = CostDomain()
+    fun mapCostResponseToDomain(cost: CostResponse): List<CostDomain> {
+        val list = ArrayList<CostDomain>()
         cost.rajaongkir?.results?.first()?.costs?.map {
+            val costDomain = CostDomain()
             costDomain.service = it?.service
             costDomain.description = it?.service
             val listCostItemDomain = ArrayList<CostItemDomain>()
@@ -122,7 +126,19 @@ object DataMapper {
                 )
             }
             costDomain.cost = listCostItemDomain
+            list.add(costDomain)
         }
-        return costDomain
+        return list
+    }
+
+    fun mapCostDomainToPresentation(cost: List<CostDomain>?): List<TypeSend> {
+        val typeSend = ArrayList<TypeSend>()
+        cost?.map {
+            val send = TypeSend()
+            send.type = it.description
+            send.price = it.cost?.first()?.value
+            typeSend.add(send)
+        }
+        return typeSend
     }
 }

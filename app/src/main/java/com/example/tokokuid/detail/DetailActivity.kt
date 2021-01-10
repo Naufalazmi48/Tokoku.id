@@ -50,8 +50,8 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     private fun showDetailItem(item: Item?) {
         item?.let {
             binding.nameProduct.text = it.name_item
-            binding.priceProduct.text = "Rp.${it.price_item}"
-            binding.weightProduct.text = "${it.weight_item} gr"
+            binding.priceProduct.text = String.format("Rp.%d",it.price_item)
+            binding.weightProduct.text = String.format("%d gr",it.weight_item)
             binding.descriptionProduct.text = it.description
             Glide.with(this)
                 .load(it.url_picture_item)

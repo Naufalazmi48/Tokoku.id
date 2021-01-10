@@ -21,13 +21,4 @@ data class CartEntity(
     var item_picture:Int,
     @ColumnInfo(name = "item_description")
     var item_description:String
-){
-    constructor(name:String,price:Int,weight:Int,picture:Int,description:String) : this(
-        item_id = 0,
-        item_name = name,
-        item_price = price,
-        item_weight = weight,
-        item_picture = picture,
-        item_description = description
-    )
-}
+)

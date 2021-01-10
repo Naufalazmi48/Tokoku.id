@@ -29,7 +29,7 @@ class RemoteDataSource(private val apiService: ApiService) {
     }.flowOn(Dispatchers.IO)
 
 
-    suspend fun getCost(originId:String,destinationId:String,weightItem:Int,courier:String):Flow<ApiResponse<CostResponse>> = flow{
+    fun getCost(originId:String,destinationId:String,weightItem:Int,courier:String):Flow<ApiResponse<CostResponse>> = flow{
         try {
             val response = apiService.getCost(BuildConfig.API_KEY,originId,destinationId,weightItem,courier)
             if (response.rajaongkir?.status?.code == 200) {

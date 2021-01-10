@@ -1,14 +1,12 @@
-package com.example.tokokuid.adapter
+package com.example.tokokuid.cart
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tokokuid.R
+import com.example.tokokuid.cart.databinding.ItemCartBinding
 import com.example.tokokuid.core.modelpresentation.Item
-import com.example.tokokuid.databinding.ItemCartBinding
 
 class CartAdapter : RecyclerView.Adapter<CartAdapter.ListViewHolder>() {
 
@@ -37,8 +35,8 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.ListViewHolder>() {
                     .load(data.url_picture_item)
                     .into(productPicture)
                 nameProduct.text = data.name_item
-                priceProduct.text = "Rp.${data.price_item}"
-                weightProduct.text = "${data.weight_item} gr"
+                priceProduct.text = String.format("Rp.%d",data.price_item)
+                weightProduct.text = String.format("%d gr",data.weight_item)
                 cancelButton.setOnClickListener {
                     onItemDeleteClick?.invoke(listData[adapterPosition])
                 }

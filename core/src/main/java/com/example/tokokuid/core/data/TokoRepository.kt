@@ -4,7 +4,6 @@ import com.example.tokokuid.core.data.source.local.LocalDataSource
 import com.example.tokokuid.core.data.source.remote.RemoteDataSource
 import com.example.tokokuid.core.data.source.remote.network.ApiResponse
 import com.example.tokokuid.core.data.source.remote.response.CityResponse
-import com.example.tokokuid.core.data.source.remote.response.CostResponse
 import com.example.tokokuid.core.domain.ITokoRepository
 import com.example.tokokuid.core.domain.model.CartDomain
 import com.example.tokokuid.core.domain.model.CityDomain
@@ -56,12 +55,12 @@ class TokoRepository(
 
         }.asFlow()
 
-    override suspend fun getCost(
+    override  fun getCost(
         originId: String,
         destinationId: String,
         weightItem: Int,
         courier: String
-    ): Flow<Resource<CostDomain>> =
+    ): Flow<Resource<List<CostDomain>>> =
         remoteDataSource.getCost(originId, destinationId, weightItem, courier).map {
             when(it){
                 is ApiResponse.Success -> Resource.Success(DataMapper.mapCostResponseToDomain(it.data))

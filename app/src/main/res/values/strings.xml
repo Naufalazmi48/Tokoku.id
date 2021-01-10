@@ -10,7 +10,6 @@
     <string name="asal">Asal</string>
     <string name="mataram">Mataram</string>
     <string name="tujuan">Tujuan</string>
-    <string name="pilih"><![CDATA[Pilih >]]></string>
     <string name="kurir_pengiriman">Kurir Pengiriman</string>
     <string name="biaya_kirim">Biaya Kirim</string>
     <string name="total_harga">Total Harga</string>
@@ -18,13 +17,11 @@
     <string name="keranjang">Keranjang</string>
     <string name="jenis_pengiriman">Jenis Pengiriman</string>
     <string name="bayar_sekarang">Bayar Sekarang</string>
-    <string name="pilih_provinsi">Pilih Provinsi</string>
-    <string name="pilih_kurir">Pilih Kurir</string>
-    <string name="pilih_tipe">Pilih Tipe Pengiriman</string>
     <string name="home_fragment">home</string>
     <string name="chatting_fragment">Chatting</string>
     <string name="feed_fragment">Feed</string>
     <string name="profile_fragment">Profile</string>
     <string name="keranjang_kosong">Keranjang Kosong</string>
+    <string name="title_cart">Cart</string>
 
 </resources>

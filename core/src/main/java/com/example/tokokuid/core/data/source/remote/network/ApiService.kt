@@ -14,7 +14,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("cost")
     suspend fun getCost(
-        @Query("key") token:String,
+        @Field("key") token:String,
         @Field("origin") originId:String,
         @Field("destination") destinationId:String,
         @Field("weight") weightItem: Int,

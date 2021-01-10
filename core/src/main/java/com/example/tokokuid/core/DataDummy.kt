@@ -2,15 +2,13 @@ package com.example.tokokuid.core
 
 import com.example.tokokuid.core.modelpresentation.Courier
 import com.example.tokokuid.core.modelpresentation.Item
-import com.example.tokokuid.core.modelpresentation.City
-import com.example.tokokuid.core.modelpresentation.TypeSend
 
 object DataDummy {
     fun getCourier(): ArrayList<Courier> = arrayListOf(
         Courier(
             "JNE",
             "jne"
-        ), Courier("Tiki", "pos")
+        ), Courier("Pos Indonesia", "pos")
     )
 
     fun getClothes(): ArrayList<Item> = arrayListOf(

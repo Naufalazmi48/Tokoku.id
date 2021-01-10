@@ -7,13 +7,4 @@ data class CartDomain(
     val weight_item: Int,
     val url_picture_item: Int,
     val description: String
-){
-    constructor(name:String,price:Int,weight:Int,picture:Int,description:String) : this(
-        id_item = 0,
-        name_item = name,
-        price_item = price,
-        weight_item = weight,
-        url_picture_item = picture,
-        description = description
-    )
-}
+)

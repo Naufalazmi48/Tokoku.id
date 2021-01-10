@@ -1,6 +1,6 @@
 package com.example.tokokuid.core.modelpresentation
 
 data class TypeSend(
-    val type:String? = null,
-    val price:Int? = null
+    var type:String? = null,
+    var price:Int? = null
 )

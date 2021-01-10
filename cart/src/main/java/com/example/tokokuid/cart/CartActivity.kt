@@ -9,39 +9,35 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tokokuid.R
-import com.example.tokokuid.adapter.CartAdapter
+import com.example.tokokuid.cart.databinding.ActivityCartBinding
 import com.example.tokokuid.core.DataDummy
 import com.example.tokokuid.core.data.Resource
-import com.example.tokokuid.core.domain.model.CityDomain
 import com.example.tokokuid.core.modelpresentation.Courier
 import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.core.modelpresentation.City
 import com.example.tokokuid.core.modelpresentation.TypeSend
-import com.example.tokokuid.databinding.ActivityCartBinding
 import com.example.tokokuid.detail.DetailActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class CartActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val cartViewModel: CartViewModel by viewModel()
     private lateinit var binding: ActivityCartBinding
     private lateinit var mAdapter: CartAdapter
-    private var city:City? = null
+    private lateinit var city: City
+    private lateinit var courier:Courier
+
+    private val cartViewModel: CartViewModel by viewModel()
+    private val mataramCode = "276"
     private var listCity = ArrayList<City>()
-    private var courier: Courier? = null
+    private var listTypeSend: List<TypeSend>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadKoinModules(cartModule)
         supportActionBar?.hide()
         mAdapter = CartAdapter()
         mAdapter.onItemClick = {
@@ -67,11 +63,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 mAdapter.setData(it)
                 binding.rvCart.visibility = View.VISIBLE
                 binding.nullCart.visibility = View.GONE
-                binding.buyNow.isEnabled = true
                 binding.location.isEnabled = true
-                binding.courierProduct.isEnabled = true
-                binding.typeSendProduct.isEnabled = true
-                countWeight(it)
+                countWeight(true)
             }
         })
 
@@ -109,9 +102,9 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
                 mAdapter.deleteData(it)
                 if (mAdapter.getData().isNullOrEmpty()) {
-                    reset()
+                    resetAll()
                 } else {
-                    countWeight(mAdapter.getData())
+                    countWeight(true)
                 }
             }
             .setNegativeButton("TIDAK") { dialog, _ ->
@@ -132,26 +125,54 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             R.id.location -> {
                 if (!listCity.isNullOrEmpty()) {
                     selectorDialog(getString(R.string.pilih_provinsi), listCity).observe(this, {
-                        city = listCity[it]
-                        binding.location.text = city?.name_city
+                        resetCourier(true)
+                        city = City(listCity[it].name_city, listCity[it].code_city)
+                        binding.location.text = city.name_city
+                        binding.courierProduct.isEnabled = true
                     })
                 }
             }
             R.id.courier_product -> {
                 val dummy = DataDummy.getCourier()
                 selectorDialog(getString(R.string.pilih_kurir), dummy).observe(this, {
+                    binding.loading.visibility = View.VISIBLE
                     binding.courierProduct.text = dummy[it].courier
                     courier = dummy[it]
+                    cartViewModel.getCost(
+                        mataramCode,
+                        city.code_city,
+                        countWeight(false),
+                        dummy[it].codeCourier
+                    )
+                        .observe(this, { data ->
+                            when (data) {
+                                is Resource.Success -> {
+                                    resetCourier(false)
+                                    listTypeSend = data.data
+                                    binding.loading.visibility = View.GONE
+                                    binding.typeSendProduct.isEnabled = true
+                                }
+                                is Resource.Loading -> binding.loading.visibility = View.VISIBLE
+                                is Resource.Error -> {
+                                    Log.d("CartActivity", data.message.toString())
+                                    binding.loading.visibility = View.GONE
+                                }
+                            }
+                        })
                 })
             }
             R.id.type_send_product -> {
-//                val list = listTypeSend
-//                if (!list.isNullOrEmpty()) {
-//                    selectorDialog(getString(R.string.pilih_tipe), list).observe(this, {
-//                        binding.typeSendProduct.text = list[it].type
-//                        binding.priceSend.text = "Rp.${list[it].price}"
-//                    })
-//                }
+                val list = listTypeSend
+                if (!list.isNullOrEmpty()) {
+                    selectorDialog(getString(R.string.pilih_tipe), list).observe(this, {
+                        binding.typeSendProduct.text = list[it].type
+                        binding.priceSend.text = "Rp.${list[it].price}"
+                        countTotal(list[it].price)
+                        binding.buyNow.isEnabled = true
+                    })
+
+
+                }
             }
         }
     }
@@ -170,19 +191,19 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
         when (list.firstOrNull()) {
             is City -> {
                 val cs: Array<CharSequence> =
-                    (list as List<City>).map { it -> it.name_city as CharSequence }
+                    (list as List<City>).map { it.name_city }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
             is Courier -> {
                 val cs: Array<CharSequence> =
-                    (list as List<Courier>).map { it -> it.courier as CharSequence }
+                    (list as List<Courier>).map {it.courier }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
             is TypeSend -> {
                 val cs: Array<CharSequence> =
-                    (list as List<TypeSend>).map { it -> it.type as CharSequence }
+                    (list as List<TypeSend>).map {it.type as CharSequence }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
@@ -191,25 +212,35 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
         return selected
     }
 
-    private fun countWeight(value: List<Item>) {
-        var weight = 0.0
-        for (item in value) {
-            weight += item.weight_item
-        }
-        if (weight / 1000 >= 1) {
-            binding.weightProduct.text = String.format("%.2f Kg", weight / 1000)
+    private fun countWeight(display: Boolean): Int {
+        if (display) {
+            var weight = 0.0
+            for (item in mAdapter.getData()) {
+                weight += item.weight_item
+            }
+            if (weight / 1000 >= 1) {
+                binding.weightProduct.text = String.format("%.2f Kg", weight / 1000)
+            } else {
+                binding.weightProduct.text = "$weight gr"
+            }
+            return 0
         } else {
-            binding.weightProduct.text = "$weight gr"
+            var weight = 0
+            for (item in mAdapter.getData()) {
+                weight += item.weight_item
+            }
+            return weight
         }
     }
 
-    private fun reset() {
-        binding.weightProduct.text = ""
+    private fun resetAll() {
         binding.priceSend.text = ""
         binding.totalPrice.text = ""
         binding.typeSendProduct.text = getString(R.string.pilih)
-        binding.location.text = getString(R.string.pilih)
         binding.courierProduct.text = getString(R.string.pilih)
+        binding.weightProduct.text = ""
+
+        binding.location.text = getString(R.string.pilih)
 
         binding.buyNow.isEnabled = false
         binding.location.isEnabled = false
@@ -218,5 +249,26 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.rvCart.visibility = View.INVISIBLE
         binding.nullCart.visibility = View.VISIBLE
+
+    }
+
+    private fun resetCourier(boolean: Boolean){
+        binding.priceSend.text = ""
+        binding.totalPrice.text = ""
+        binding.typeSendProduct.text = getString(R.string.pilih)
+        if(boolean){
+            binding.courierProduct.text = getString(R.string.pilih)
+        }
+    }
+
+    private fun countTotal(ongkir: Int?) {
+        if (ongkir != null) {
+            var total = 0
+            mAdapter.getData().map {
+                total += it.price_item
+            }
+            total += ongkir
+            binding.totalPrice.text = "Rp.$total"
+        }
     }
 }

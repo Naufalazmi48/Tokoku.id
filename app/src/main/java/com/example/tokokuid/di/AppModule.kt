@@ -1,6 +1,5 @@
 package com.example.tokokuid.di
 
-import com.example.tokokuid.cart.CartViewModel
 import com.example.tokokuid.core.domain.usecase.TokoIntercator
 import com.example.tokokuid.core.domain.usecase.TokoUseCase
 import com.example.tokokuid.detail.DetailViewModel
@@ -12,6 +11,5 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { CartViewModel(get()) }
     viewModel { DetailViewModel(get()) }
 }

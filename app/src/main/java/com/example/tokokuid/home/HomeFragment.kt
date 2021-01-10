@@ -1,6 +1,7 @@
 package com.example.tokokuid.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.tokokuid.cart.CartActivity
 import com.example.tokokuid.core.DataDummy
 import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.databinding.FragmentHomeBinding
@@ -47,7 +47,8 @@ class HomeFragment : Fragment() {
                 adapter = mAdapter
             }
             binding.cart.setOnClickListener {
-                startActivity(Intent(context, CartActivity::class.java))
+                val uri = Uri.parse("tokokuid://cart")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
             binding.searchtext.addTextChangedListener {
                 if(it.isNullOrEmpty()){
@@ -59,7 +60,7 @@ class HomeFragment : Fragment() {
                     val result = ArrayList<Item>()
                     for (item in data){
                         val name = item.name_item
-                        if((name != null) && name.contains(binding.searchtext.text.toString(),true)){
+                        if(name.contains(binding.searchtext.text.toString(),true)){
                             result.add(item)
                         }
                     }

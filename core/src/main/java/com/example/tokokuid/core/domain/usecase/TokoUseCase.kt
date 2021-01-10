@@ -4,7 +4,6 @@ import com.example.tokokuid.core.data.Resource
 import com.example.tokokuid.core.domain.model.CartDomain
 import com.example.tokokuid.core.domain.model.CityDomain
 import com.example.tokokuid.core.domain.model.CostDomain
-import com.example.tokokuid.core.modelpresentation.City
 import kotlinx.coroutines.flow.Flow
 
 interface TokoUseCase {
@@ -12,10 +11,10 @@ interface TokoUseCase {
     suspend fun insertCart(cart: CartDomain)
     suspend fun deleteFromCart(cart: CartDomain)
     fun getListCity(): Flow<Resource<List<CityDomain>>>
-    suspend fun getCost(
+     fun getCost(
         originId: String,
         destinationId: String,
         weightItem: Int,
         courier: String
-    ): Flow<Resource<CostDomain>>
+    ): Flow<Resource<List<CostDomain>>>
 }
