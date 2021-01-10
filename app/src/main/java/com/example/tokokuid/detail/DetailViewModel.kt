@@ -9,6 +9,6 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(private val useCase: TokoUseCase): ViewModel() {
     fun insertCart(item: Item) = viewModelScope.launch {
-        useCase.insertCart(DataMapper.mapPresentationToDomain(item))
+        useCase.insertCart(DataMapper.mapItemPresentationToDomain(item))
     }
 }

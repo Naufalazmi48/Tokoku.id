@@ -1,20 +1,32 @@
 package com.example.tokokuid.cart
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.map
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.tokokuid.core.data.Resource
 import com.example.tokokuid.core.domain.usecase.TokoUseCase
+import com.example.tokokuid.core.modelpresentation.City
 import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.core.utils.DataMapper
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class CartViewModel(private val useCase: TokoUseCase):ViewModel() {
-    val itemInCart = useCase.getAllInCart().asLiveData().map {
-        DataMapper.mapDomainToPresentation(it)
+class CartViewModel(private val useCase: TokoUseCase) : ViewModel() {
+
+    val itemInCart
+        get() = useCase.getAllInCart().asLiveData().map {
+            DataMapper.mapItemDomainToPresentation(it)
+        }
+
+    fun deleteFromCart(item: Item) = viewModelScope.launch {
+        useCase.deleteFromCart(DataMapper.mapItemPresentationToDomain(item))
     }
-    fun deleteFromCart(item:Item) = viewModelScope.launch {
-        useCase.deleteFromCart(DataMapper.mapPresentationToDomain(item))
-    }
+
+    val getListCity
+        get() = useCase.getListCity().asLiveData().map {
+            when (it) {
+                is Resource.Success -> {
+                    Resource.Success(DataMapper.mapCityDomainToPresentation(it.data))
+                }
+                is Resource.Loading -> Resource.Loading()
+                is Resource.Error -> Resource.Error(it.message.toString())
+            }
+        }
 }

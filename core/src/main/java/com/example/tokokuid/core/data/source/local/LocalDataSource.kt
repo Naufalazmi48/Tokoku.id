@@ -1,7 +1,9 @@
 package com.example.tokokuid.core.data.source.local
 
 import com.example.tokokuid.core.data.source.local.entity.CartEntity
+import com.example.tokokuid.core.data.source.local.entity.CityEntity
 import com.example.tokokuid.core.data.source.local.room.TokoDAO
+import com.example.tokokuid.core.domain.model.CityDomain
 import kotlinx.coroutines.flow.Flow
 
 
@@ -12,4 +14,9 @@ class LocalDataSource(private val tokoDAO: TokoDAO) {
     suspend fun insertCart(cart: CartEntity) = tokoDAO.insertCart(cart)
 
     suspend fun deleteFromCart(cart: CartEntity) = tokoDAO.deleteFromCart(cart.item_id)
+
+    suspend fun insertCity(list: List<CityEntity>) = tokoDAO.insertCity(list)
+
+    fun getCity():Flow<List<CityEntity>> = tokoDAO.getCity()
+
 }

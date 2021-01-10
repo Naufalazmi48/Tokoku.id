@@ -2,6 +2,7 @@ package com.example.tokokuid
 
 import android.app.Application
 import com.example.tokokuid.core.di.databaseModule
+import com.example.tokokuid.core.di.networkModule
 import com.example.tokokuid.di.useCaseModule
 import com.example.tokokuid.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,8 @@ class MyApplication : Application() {
                     databaseModule,
                     useCaseModule,
                     viewModelModule,
-                    repositoryModule
+                    repositoryModule,
+                    networkModule
                 )
             )
         }

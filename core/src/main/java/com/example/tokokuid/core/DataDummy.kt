@@ -2,50 +2,16 @@ package com.example.tokokuid.core
 
 import com.example.tokokuid.core.modelpresentation.Courier
 import com.example.tokokuid.core.modelpresentation.Item
-import com.example.tokokuid.core.modelpresentation.Province
+import com.example.tokokuid.core.modelpresentation.City
 import com.example.tokokuid.core.modelpresentation.TypeSend
 
 object DataDummy {
-    fun getProvince(): ArrayList<Province> = arrayListOf(
-        Province("Sumatera Barat", 1),
-        Province("Jakarta", 2),
-        Province("Sumatera Utara", 3),
-        Province("Aceh", 4),
-        Province("Riau", 5),
-        Province("Jambi", 6),
-        Province("Gorontalo", 7),
-        Province("Nusa Tenggara Barat", 8),
-        Province("Nusa Tenggara Timur", 9),
-        Province("Sulawesi Barat", 10),
-        Province("Sulawesi Selatan", 11),
-        Province("Sulawesi Tenggara", 12),
-        Province("Sulawesi Tengah", 13),
-        Province("Sulawesi Utara", 14),
-        Province("Kalimatan Barat", 15),
-        Province("Kalimantan Timur", 16),
+    fun getCourier(): ArrayList<Courier> = arrayListOf(
+        Courier(
+            "JNE",
+            "jne"
+        ), Courier("Tiki", "pos")
     )
-
-    fun getCourier(): ArrayList<Courier> {
-        val jne =
-            arrayListOf(
-                TypeSend(
-                    "Yakin Esok Sampai",
-                    30000
-                ), TypeSend("Reguler", 35000)
-            )
-        val tiki = arrayListOf(
-            TypeSend(
-                "Esok Sampai",
-                40000
-            ), TypeSend("Reg", 35000)
-        )
-        return arrayListOf(
-            Courier(
-                "JNE",
-                jne
-            ), Courier("Tiki", tiki)
-        )
-    }
 
     fun getClothes(): ArrayList<Item> = arrayListOf(
         Item(

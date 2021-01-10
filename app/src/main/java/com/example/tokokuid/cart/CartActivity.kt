@@ -14,12 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tokokuid.R
 import com.example.tokokuid.adapter.CartAdapter
 import com.example.tokokuid.core.DataDummy
+import com.example.tokokuid.core.data.Resource
+import com.example.tokokuid.core.domain.model.CityDomain
 import com.example.tokokuid.core.modelpresentation.Courier
 import com.example.tokokuid.core.modelpresentation.Item
-import com.example.tokokuid.core.modelpresentation.Province
+import com.example.tokokuid.core.modelpresentation.City
 import com.example.tokokuid.core.modelpresentation.TypeSend
 import com.example.tokokuid.databinding.ActivityCartBinding
 import com.example.tokokuid.detail.DetailActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CartActivity : AppCompatActivity(), View.OnClickListener {
@@ -27,7 +34,9 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     private val cartViewModel: CartViewModel by viewModel()
     private lateinit var binding: ActivityCartBinding
     private lateinit var mAdapter: CartAdapter
-    private var listTypeSend: ArrayList<TypeSend>? = null
+    private var city:City? = null
+    private var listCity = ArrayList<City>()
+    private var courier: Courier? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +75,28 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+        cartViewModel.getListCity.observe(this, { data ->
+            when (data) {
+                is Resource.Success -> {
+                    val list = data.data
+                    if (list != null) {
+                        listCity.addAll(list)
+                    }
+                    binding.loading.visibility = View.GONE
+                }
+                is Resource.Loading -> binding.loading.visibility = View.VISIBLE
+                is Resource.Error -> {
+                    Toast.makeText(
+                        this,
+                        "Terjadi Kendala, Silahkan ulangi",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.d("CartActivity", data.message.toString())
+                    binding.loading.visibility = View.GONE
+                }
+            }
+        })
+
     }
 
     private fun showAlertDialog(it: Item) {
@@ -94,76 +125,70 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-
         when (v.id) {
             R.id.back -> finish()
             R.id.buy_now -> Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_LONG)
                 .show()
             R.id.location -> {
-                val dummy = DataDummy.getProvince()
-                selectorDialog(getString(R.string.pilih_provinsi), dummy).observe(this, {
-                    binding.location.text = dummy[it].name_province
-                })
+                if (!listCity.isNullOrEmpty()) {
+                    selectorDialog(getString(R.string.pilih_provinsi), listCity).observe(this, {
+                        city = listCity[it]
+                        binding.location.text = city?.name_city
+                    })
+                }
             }
             R.id.courier_product -> {
                 val dummy = DataDummy.getCourier()
                 selectorDialog(getString(R.string.pilih_kurir), dummy).observe(this, {
-                    resetTypeSend()
                     binding.courierProduct.text = dummy[it].courier
-                    listTypeSend = dummy[it].typeSend
+                    courier = dummy[it]
                 })
             }
             R.id.type_send_product -> {
-                val list = listTypeSend
-                if (!list.isNullOrEmpty()) {
-                    selectorDialog(getString(R.string.pilih_tipe), list).observe(this, {
-                        binding.typeSendProduct.text = list[it].type
-                        binding.priceSend.text = "Rp.${list[it].price}"
-                    })
-                }
+//                val list = listTypeSend
+//                if (!list.isNullOrEmpty()) {
+//                    selectorDialog(getString(R.string.pilih_tipe), list).observe(this, {
+//                        binding.typeSendProduct.text = list[it].type
+//                        binding.priceSend.text = "Rp.${list[it].price}"
+//                    })
+//                }
             }
         }
     }
 
-    private fun resetTypeSend() {
-        listTypeSend?.clear()
-        binding.typeSendProduct.text = getText(R.string.pilih)
-        binding.priceSend.text = ""
-    }
-
-    private fun selectorDialog(title: String, list: ArrayList<*>): LiveData<Int> {
-        val selectedPosition = MutableLiveData<Int>()
+    private fun selectorDialog(title: String, list: List<*>): LiveData<Int> {
+        val selected = MutableLiveData<Int>()
         val dialog = AlertDialog.Builder(this)
             .setTitle(title)
             .setNegativeButton("BATAL") { dialog, _ ->
                 dialog.dismiss()
             }
             .setPositiveButton("OKE") { dialog, _ ->
-                selectedPosition.postValue((dialog as AlertDialog).listView.checkedItemPosition)
+                selected.postValue((dialog as AlertDialog).listView.checkedItemPosition)
                 dialog.dismiss()
             }
         when (list.firstOrNull()) {
-            is Province -> {
+            is City -> {
                 val cs: Array<CharSequence> =
-                    (list as ArrayList<Province>).map { it -> it.name_province as CharSequence }
+                    (list as List<City>).map { it -> it.name_city as CharSequence }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
             is Courier -> {
                 val cs: Array<CharSequence> =
-                    (list as ArrayList<Courier>).map { it -> it.courier as CharSequence }
+                    (list as List<Courier>).map { it -> it.courier as CharSequence }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
             is TypeSend -> {
                 val cs: Array<CharSequence> =
-                    (list as ArrayList<TypeSend>).map { it -> it.type as CharSequence }
+                    (list as List<TypeSend>).map { it -> it.type as CharSequence }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
         }
         dialog.show()
-        return selectedPosition
+        return selected
     }
 
     private fun countWeight(value: List<Item>) {
