@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tokokuid">
-        <activity android:name=".cart.CartActivity" />
         <activity android:name=".detail.DetailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

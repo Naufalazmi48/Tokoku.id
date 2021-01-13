@@ -98,9 +98,10 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             .setMessage("Anda yakin ingin menghapus barang ini dari keranjang?")
             .setPositiveButton("YA") { dialog, _ ->
                 cartViewModel.deleteFromCart(it)
-                dialog.dismiss()
-                Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
                 mAdapter.deleteData(it)
+                resetCourier(true)
+                Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
+                dialog.dismiss()
                 if (mAdapter.getData().isNullOrEmpty()) {
                     resetAll()
                 } else {

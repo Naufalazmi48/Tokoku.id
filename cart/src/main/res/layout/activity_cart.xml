@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:backgroundTint="@color/PrimaryColor"
-        />
+        android:contentDescription="TODO" />
 
     <View
         android:id="@+id/mid_divider"
@@ -154,8 +154,7 @@
         app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintTop_toTopOf="@id/to"
-        android:text="@string/pilih"
-        />
+        android:text="@string/pilih"/>
 
     <TextView
         android:id="@+id/courier"
@@ -183,8 +182,7 @@
         app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintTop_toTopOf="@id/courier"
-        android:text="@string/pilih"
-        />
+        android:text="@string/pilih" />
 
 
     <TextView
@@ -213,8 +211,7 @@
         app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
         app:layout_constraintRight_toLeftOf="@id/right_divider"
         app:layout_constraintTop_toTopOf="@id/type_send"
-        android:text="@string/pilih"
-        />
+        android:text="@string/pilih" />
 
     <TextView
         android:id="@+id/ongkir"
