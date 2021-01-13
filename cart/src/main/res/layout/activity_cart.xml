@@ -1,302 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context="com.example.tokokuid.cart.CartActivity">
 
-    <ImageButton
-        android:id="@+id/back"
-        android:onClick="onClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:backgroundTint="@color/PrimaryColor"
-        android:contentDescription="TODO" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/mid_divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/PrimaryColor"
+            android:contentDescription="@string/kembali"
+            android:onClick="onClick"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/left_divider"
-        android:layout_width="20dp"
-        android:layout_height="0dp"
-        android:background="@color/GrayColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mid_divider" />
+        <View
+            android:id="@+id/mid_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/bottom_divider"
-        android:layout_width="150dp"
-        android:layout_height="20dp"
-        android:background="@color/GrayColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <View
+            android:id="@+id/left_divider"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="@color/GrayColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mid_divider" />
 
-    <View
-        android:id="@+id/right_divider"
-        android:layout_width="20dp"
-        android:layout_height="0dp"
-        android:background="@color/GrayColor"
-        app:layout_constraintBottom_toBottomOf="@id/mid_divider"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/bottom_divider"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:background="@color/GrayColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
-    <View
-        android:id="@+id/top_divider"
-        android:layout_width="150dp"
-        android:layout_height="20dp"
-        android:background="@color/GrayColor"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/right_divider"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="@color/GrayColor"
+            app:layout_constraintBottom_toBottomOf="@id/mid_divider"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/mid_bottom_divider"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mid_divider" />
+        <View
+            android:id="@+id/top_divider"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:background="@color/GrayColor"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        android:layout_margin="10dp"
-        tools:listitem="@layout/item_cart"
-        app:layout_constraintBottom_toTopOf="@id/mid_divider"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toBottomOf="@id/back" />
+        <View
+            android:id="@+id/mid_bottom_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mid_divider" />
 
-    <TextView
-        android:id="@+id/weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/total_berat"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toTopOf="@id/left_divider" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/mid_divider"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toBottomOf="@id/back"
+            tools:listitem="@layout/item_cart" />
 
-    <TextView
-        android:id="@+id/weight_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        android:textAlignment="textEnd"
-        android:textColor="@color/DarkGray"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/weight"
-        tools:text="2Kg"
-        />
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/total_berat"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toTopOf="@id/left_divider" />
 
-    <TextView
-        android:id="@+id/from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/asal"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/weight"/>
+        <TextView
+            android:id="@+id/weight_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:maxLines="1"
+            android:textAlignment="textEnd"
+            android:textColor="@color/DarkGray"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/weight"
+            tools:text="2Kg" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/DarkGray"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        android:textAlignment="textEnd"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/from"
-        android:text="@string/mataram"
-        />
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/asal"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/weight" />
 
-    <TextView
-        android:id="@+id/to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/tujuan"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/from"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/mataram"
+            android:textAlignment="textEnd"
+            android:textColor="@color/DarkGray"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/from" />
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:enabled="false"
-        android:onClick="onClick"
-        android:paddingEnd="10dp"
-        android:maxLines="2"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@color/DarkGray"
-        android:textAlignment="textEnd"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/to"
-        android:text="@string/pilih"/>
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/tujuan"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/from" />
 
-    <TextView
-        android:id="@+id/courier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/kurir_pengiriman"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/location"/>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@color/DarkGray"
+            android:enabled="false"
+            android:maxLines="2"
+            android:onClick="onClick"
+            android:paddingEnd="10dp"
+            android:text="@string/pilih"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/to"
+            tools:ignore="RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/courier_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:enabled="false"
-        android:onClick="onClick"
-        android:paddingEnd="10dp"
-        android:maxLines="2"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@color/DarkGray"
-        android:textAlignment="textEnd"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/courier"
-        android:text="@string/pilih" />
+        <TextView
+            android:id="@+id/courier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/kurir_pengiriman"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/location" />
+
+        <TextView
+            android:id="@+id/courier_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@color/DarkGray"
+            android:enabled="false"
+            android:maxLines="2"
+            android:onClick="onClick"
+            android:paddingEnd="10dp"
+            android:text="@string/pilih"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/courier"
+            tools:ignore="RtlSymmetry" />
 
 
-    <TextView
-        android:id="@+id/type_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/jenis_pengiriman"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/courier_product"/>
+        <TextView
+            android:id="@+id/type_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/jenis_pengiriman"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/courier_product" />
 
-    <TextView
-        android:id="@+id/type_send_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:enabled="false"
-        android:paddingEnd="10dp"
-        android:onClick="onClick"
-        android:maxLines="2"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@color/DarkGray"
-        android:textAlignment="textEnd"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/type_send"
-        android:text="@string/pilih" />
+        <TextView
+            android:id="@+id/type_send_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@color/DarkGray"
+            android:enabled="false"
+            android:maxLines="2"
+            android:onClick="onClick"
+            android:paddingEnd="10dp"
+            android:text="@string/pilih"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/type_send"
+            tools:ignore="RtlSymmetry" />
 
-    <TextView
-        android:id="@+id/ongkir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/biaya_kirim"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/type_send_product"/>
+        <TextView
+            android:id="@+id/ongkir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/biaya_kirim"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/type_send_product" />
 
-    <TextView
-        android:id="@+id/price_send"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:maxLines="2"
-        android:textStyle="bold"
-        android:textColor="@color/DarkGray"
-        android:textAlignment="textEnd"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/ongkir"
-        tools:text="Rp.500.000"
-        />
+        <TextView
+            android:id="@+id/price_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:maxLines="2"
+            android:textAlignment="textEnd"
+            android:textColor="@color/DarkGray"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/ongkir"
+            tools:text="Rp.500.000" />
 
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/total_harga"
-        app:layout_constraintLeft_toRightOf="@id/left_divider"
-        app:layout_constraintTop_toBottomOf="@id/price_send"/>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/total_harga"
+            app:layout_constraintLeft_toRightOf="@id/left_divider"
+            app:layout_constraintTop_toBottomOf="@id/price_send" />
 
-    <TextView
-        android:id="@+id/total_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:maxLines="2"
-        android:textStyle="bold"
-        android:textColor="@color/DarkGray"
-        android:textAlignment="textEnd"
-        app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintTop_toTopOf="@id/total"
-        tools:text="Rp.1.500.000"
-        />
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:maxLines="2"
+            android:textAlignment="textEnd"
+            android:textColor="@color/DarkGray"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/mid_bottom_divider"
+            app:layout_constraintRight_toLeftOf="@id/right_divider"
+            app:layout_constraintTop_toTopOf="@id/total"
+            tools:text="Rp.1.500.000" />
 
-    <Button
-        android:id="@+id/buy_now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:onClick="onClick"
-        android:text="@string/bayar_sekarang"
-        app:layout_constraintRight_toLeftOf="@id/right_divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"
-        />
+        <Button
+            android:id="@+id/buy_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:enabled="false"
+            android:onClick="onClick"
+            android:text="@string/bayar_sekarang"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/right_divider" />
 
-    <TextView
-        android:id="@+id/nullCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/rv_cart"
-        app:layout_constraintRight_toRightOf="@id/rv_cart"
-        app:layout_constraintTop_toTopOf="@id/rv_cart"
-        app:layout_constraintBottom_toBottomOf="@id/rv_cart"
-        android:textAlignment="center"
-        android:textColor="@color/DarkGray"
-        android:text="@string/keranjang_kosong"
-        android:textSize="20sp"
-        />
+        <TextView
+            android:id="@+id/nullCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/keranjang_kosong"
+            android:textAlignment="center"
+            android:textColor="@color/DarkGray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/rv_cart"
+            app:layout_constraintLeft_toLeftOf="@id/rv_cart"
+            app:layout_constraintRight_toRightOf="@id/rv_cart"
+            app:layout_constraintTop_toTopOf="@id/rv_cart" />
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

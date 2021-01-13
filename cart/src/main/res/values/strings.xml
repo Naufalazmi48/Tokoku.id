@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="foto_produk">Foto Produk</string>
+    <string name="pilih_provinsi">Pilih Provinsi</string>
+    <string name="pilih_kurir">Pilih Kurir</string>
+    <string name="pilih_tipe">Pilih Tipe Pengiriman</string>
+    <string name="pilih"><![CDATA[Pilih >]]></string>
+    <string name="kembali">Kembali</string>
 </resources>

@@ -26,7 +26,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityCartBinding
     private lateinit var mAdapter: CartAdapter
     private lateinit var city: City
-    private lateinit var courier:Courier
+    private lateinit var courier: Courier
 
     private val cartViewModel: CartViewModel by viewModel()
     private val mataramCode = "276"
@@ -167,7 +167,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 if (!list.isNullOrEmpty()) {
                     selectorDialog(getString(R.string.pilih_tipe), list).observe(this, {
                         binding.typeSendProduct.text = list[it].type
-                        binding.priceSend.text = "Rp.${list[it].price}"
+                        val show = "Rp.${list[it].price}"
+                        binding.priceSend.text = show
                         countTotal(list[it].price)
                         binding.buyNow.isEnabled = true
                     })
@@ -198,13 +199,13 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             }
             is Courier -> {
                 val cs: Array<CharSequence> =
-                    (list as List<Courier>).map {it.courier }
+                    (list as List<Courier>).map { it.courier }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
             is TypeSend -> {
                 val cs: Array<CharSequence> =
-                    (list as List<TypeSend>).map {it.type as CharSequence }
+                    (list as List<TypeSend>).map { it.type as CharSequence }
                         .toTypedArray()
                 dialog.setSingleChoiceItems(cs, 0, null)
             }
@@ -222,7 +223,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             if (weight / 1000 >= 1) {
                 binding.weightProduct.text = String.format("%.2f Kg", weight / 1000)
             } else {
-                binding.weightProduct.text = "$weight gr"
+                val show = "$weight gr"
+                binding.weightProduct.text = show
             }
             return 0
         } else {
@@ -253,11 +255,11 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun resetCourier(boolean: Boolean){
+    private fun resetCourier(boolean: Boolean) {
         binding.priceSend.text = ""
         binding.totalPrice.text = ""
         binding.typeSendProduct.text = getString(R.string.pilih)
-        if(boolean){
+        if (boolean) {
             binding.courierProduct.text = getString(R.string.pilih)
         }
     }
@@ -269,7 +271,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 total += it.price_item
             }
             total += ongkir
-            binding.totalPrice.text = "Rp.$total"
+            val show = "Rp.$total"
+            binding.totalPrice.text = show
         }
     }
 }

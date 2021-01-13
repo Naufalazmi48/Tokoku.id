@@ -14,15 +14,14 @@
     </dist:module>
 
 
-    <application
-        android:supportsRtl="true"
-        >
+    <application>
         <activity android:name=".CartActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="tokokuid"
-                    android:host="cart"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="cart"
+                    android:scheme="tokokuid" />
             </intent-filter>
         </activity>
     </application>
