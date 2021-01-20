@@ -43,8 +43,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+        finishAfterTransition()
     }
 
     private fun showDetailItem(item: Item?) {
@@ -60,13 +59,11 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v.id){
-            R.id.add_cart -> {
-                val item = detailItem
-                if(item != null){
-                    detailViewModel.insertCart(item)
-                    Toast.makeText(this,"Barang berhasil dimasukkan ke keranjang",Toast.LENGTH_LONG).show()
-                }
+        if(v.id == R.id.add_cart){
+            val item = detailItem
+            if(item != null){
+                detailViewModel.insertCart(item)
+                Toast.makeText(this,"Barang berhasil dimasukkan ke keranjang",Toast.LENGTH_LONG).show()
             }
         }
     }

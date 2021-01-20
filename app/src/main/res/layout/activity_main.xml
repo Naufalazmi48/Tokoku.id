@@ -86,24 +86,18 @@
             app:layout_constraintRight_toRightOf="@id/toolbar"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <FrameLayout
-            android:id="@+id/container"
+        <ImageView
+            android:id="@+id/new_product_picture"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/image_container"
+            android:contentDescription="@string/product_image"
             android:elevation="4dp"
+            android:background="@drawable/image_container"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="@id/newproduct"
             app:layout_constraintLeft_toLeftOf="@id/newproduct"
-            app:layout_constraintTop_toTopOf="@id/newproduct">
-
-            <ImageView
-                android:id="@+id/new_product_picture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/product_image" />
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="@id/newproduct" />
 
         <TextView
             android:id="@+id/introducting"
@@ -113,8 +107,8 @@
             android:layout_marginTop="10dp"
             android:elevation="4dp"
             android:text="@string/baru"
-            app:layout_constraintLeft_toRightOf="@id/container"
-            app:layout_constraintTop_toTopOf="@id/container" />
+            app:layout_constraintLeft_toRightOf="@id/new_product_picture"
+            app:layout_constraintTop_toTopOf="@id/new_product_picture" />
 
         <TextView
             android:id="@+id/new_name_product"
@@ -156,9 +150,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_product"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:paddingStart="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/bottomsheet"

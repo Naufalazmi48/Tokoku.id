@@ -8,7 +8,5 @@ data class CostDomain (
         )
 
 data class CostItemDomain(
-        var note: String? = null,
-        var etd: String? = null,
         var value: Int? = null
 )

@@ -6,4 +6,5 @@
     <string name="pilih_tipe">Pilih Tipe Pengiriman</string>
     <string name="pilih"><![CDATA[Pilih >]]></string>
     <string name="kembali">Kembali</string>
+    <string name="tombol_batalkan">Tombol Batalkan</string>
 </resources>

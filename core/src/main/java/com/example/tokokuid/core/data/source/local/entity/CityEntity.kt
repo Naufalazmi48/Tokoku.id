@@ -14,17 +14,9 @@ data class CityEntity(
     @ColumnInfo(name = "cityId")
     var cityId:String?,
     @ColumnInfo(name = "cityName")
-    var cityName:String?,
-    @ColumnInfo(name = "provinceId")
-    var provinceId:String?,
-    @ColumnInfo(name = "provinceName")
-    var provinceName:String?,
-    @ColumnInfo(name = "type")
-    var type:String?,
-    @ColumnInfo(name = "postalCode")
-    var postalCode:String?,
+    var cityName:String?
 ){
-    constructor(cityId: String?,cityName: String?,provinceId: String?,provinceName: String?,type: String?,postalCode: String?):this(
-        0,cityId,cityName,provinceId,provinceName,type,postalCode
+    constructor(cityId: String?,cityName: String?):this(
+        0,cityId,cityName
     )
 }

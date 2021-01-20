@@ -64,12 +64,8 @@ object DataMapper {
             list.map {
                 listCity.add(
                     CityEntity(
-                        it?.cityName,
-                        it?.province,
-                        it?.provinceId,
-                        it?.type,
-                        it?.postalCode,
-                        it?.cityId
+                        it?.cityId,
+                        it?.cityName
                     )
                 )
             }
@@ -97,12 +93,8 @@ object DataMapper {
         city.map {
             listCity.add(
                 CityDomain(
-                    it.cityId,
                     it.cityName,
-                    it.provinceId,
-                    it.provinceName,
-                    it.type,
-                    it.postalCode
+                    it.cityId
                 )
             )
         }
@@ -119,8 +111,6 @@ object DataMapper {
             it?.cost?.map { costItem ->
                 listCostItemDomain.add(
                     CostItemDomain(
-                        costItem?.note,
-                        costItem?.etd,
                         costItem?.value
                     )
                 )
