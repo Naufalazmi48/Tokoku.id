@@ -34,6 +34,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             binding.location.isEnabled = true
             countWeight(true)
             updateUI()
+        } else {
+            showAnimation()
         }
     }
     private val cityObserver = Observer<Resource<List<City>>> {
@@ -44,7 +46,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(
                     this,
                     "Terjadi Kendala, Silahkan ulangi",
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
                 Log.d("CartActivity", it.message.toString())
                 binding.loading.visibility = View.GONE
@@ -166,7 +168,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             binding.typeSendProduct.isEnabled = true
         }
 
-        if(typeSend != null){
+        if (typeSend != null) {
             binding.typeSendProduct.text = typeSend.type
             countTotal(typeSend.price)
             binding.buyNow.isEnabled = true
@@ -181,13 +183,10 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
                 cartViewModel.deleteFromCart(it)
                 mAdapter.deleteData(it)
                 resetCourier(true)
-                Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+                if (!mAdapter.getData().isNullOrEmpty()) countWeight(true)
+                resetAll()
                 dialog.dismiss()
-                if (mAdapter.getData().isNullOrEmpty()) {
-                    resetAll()
-                } else {
-                    countWeight(true)
-                }
             }
             .setNegativeButton("TIDAK") { dialog, _ ->
                 dialog.dismiss()
@@ -201,7 +200,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.back -> finishAfterTransition()
-            R.id.buy_now -> Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_LONG)
+            R.id.buy_now -> Toast.makeText(this, "Fitur ini belum tersedia", Toast.LENGTH_SHORT)
                 .show()
             R.id.location -> {
                 val data = cartViewModel.listCity.value?.data
@@ -286,10 +285,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun resetAll() {
-        binding.priceSend.text = ""
-        binding.totalPrice.text = ""
-        binding.typeSendProduct.text = getString(R.string.pilih)
-        binding.courierProduct.text = getString(R.string.pilih)
+        resetCourier(true)
         binding.weightProduct.text = ""
 
         binding.location.text = getString(R.string.pilih)
@@ -311,6 +307,8 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
         if (boolean) {
             binding.courierProduct.text = getString(R.string.pilih)
             cartViewModel.courierSelected = null
+            cartViewModel.typeSendSelected = null
+            cartViewModel.citySelected = null
         }
     }
 
@@ -324,5 +322,27 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             val show = "Rp.$total"
             binding.totalPrice.text = show
         }
+    }
+
+    private fun showAnimation() {
+        binding.animationEmpty.visibility = View.VISIBLE
+        binding.animationEmpty.playAnimation()
+        binding.rvCart.visibility = View.GONE
+        binding.nullCart.visibility = View.VISIBLE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.animationEmpty.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.animationEmpty.resumeAnimation()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.animationEmpty.clearAnimation()
     }
 }

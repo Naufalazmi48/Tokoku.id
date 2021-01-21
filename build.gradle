@@ -11,6 +11,7 @@ buildscript {
     ext.retrofit_version = "2.9.0"
     ext.logging_interceptor_version = '4.9.0'
     ext.leak_canary_version = '2.4'
+    ext.lottie_version = "3.4.1"
     repositories {
         google()
         jcenter()

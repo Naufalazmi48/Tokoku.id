@@ -19,5 +19,6 @@
     <string name="bayar_sekarang">Bayar Sekarang</string>
     <string name="keranjang_kosong">Keranjang Kosong</string>
     <string name="title_cart">Cart</string>
+    <string name="not_found">Barang yang dicari tidak ditemukan</string>
 
 </resources>

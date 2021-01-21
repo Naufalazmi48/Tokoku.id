@@ -3,7 +3,7 @@ package com.example.tokokuid
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             if (it.isNullOrEmpty()) {
                 mainViewModel.clearData()
                 mAdapter.setData(mainViewModel.data)
+                showAnimation(false)
             }
         }
         binding.searchButton.setOnClickListener {
@@ -63,8 +64,9 @@ class MainActivity : AppCompatActivity() {
                 if (!result.isNullOrEmpty()) {
                     mainViewModel.data = result
                     mAdapter.setData(mainViewModel.data)
+                    showAnimation(false)
                 } else {
-                    Toast.makeText(this, "Data tidak ditemukan", Toast.LENGTH_LONG).show()
+                    showAnimation(true)
                 }
             }
         }
@@ -75,5 +77,34 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this)
             .load(item.url_picture_item)
             .into(binding.newProductPicture)
+    }
+
+    private fun showAnimation(boolean: Boolean){
+        if(boolean){
+            binding.animationNotFound.visibility = View.VISIBLE
+            binding.animationNotFound.playAnimation()
+            binding.rvProduct.visibility = View.GONE
+            binding.textNotFound.visibility = View.VISIBLE
+        }else{
+            binding.animationNotFound.visibility = View.GONE
+            binding.animationNotFound.clearAnimation()
+            binding.rvProduct.visibility = View.VISIBLE
+            binding.textNotFound.visibility = View.GONE
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.animationNotFound.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.animationNotFound.resumeAnimation()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.animationNotFound.clearAnimation()
     }
 }
