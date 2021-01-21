@@ -30,7 +30,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
         if (!it.isNullOrEmpty()) {
             mAdapter.setData(it)
             binding.rvCart.visibility = View.VISIBLE
-            binding.nullCart.visibility = View.GONE
+            binding.nullCart.visibility = View.INVISIBLE
             binding.location.isEnabled = true
             countWeight(true)
             updateUI()
@@ -54,7 +54,6 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
     private val selectorDialogObserver = Observer<Map<SelectorCode, Int>> {
-
         when {
             it.containsKey(SelectorCode.City) -> {
                 val selected = it.getValue(SelectorCode.City)
@@ -309,6 +308,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
             cartViewModel.courierSelected = null
             cartViewModel.typeSendSelected = null
             cartViewModel.citySelected = null
+            cartViewModel.selector.value = emptyMap()
         }
     }
 
@@ -327,7 +327,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener {
     private fun showAnimation() {
         binding.animationEmpty.visibility = View.VISIBLE
         binding.animationEmpty.playAnimation()
-        binding.rvCart.visibility = View.GONE
+        binding.rvCart.visibility = View.INVISIBLE
         binding.nullCart.visibility = View.VISIBLE
     }
 

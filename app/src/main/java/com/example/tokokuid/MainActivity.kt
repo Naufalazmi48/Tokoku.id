@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         if(boolean){
             binding.animationNotFound.visibility = View.VISIBLE
             binding.animationNotFound.playAnimation()
-            binding.rvProduct.visibility = View.GONE
+            binding.rvProduct.visibility = View.INVISIBLE
             binding.textNotFound.visibility = View.VISIBLE
         }else{
             binding.animationNotFound.visibility = View.GONE

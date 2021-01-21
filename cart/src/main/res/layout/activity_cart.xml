@@ -75,7 +75,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cart"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:visibility="invisible"
@@ -275,7 +275,8 @@
             android:enabled="false"
             android:onClick="onClick"
             android:text="@string/bayar_sekarang"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_price"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_divider"
             app:layout_constraintRight_toLeftOf="@id/right_divider" />
 
         <com.airbnb.lottie.LottieAnimationView

@@ -17,7 +17,7 @@ class CartViewModel(private val useCase: TokoUseCase) : ViewModel() {
     val dummyCourier = DataDummy.getCourier()
     private val _listCity = MutableLiveData<Resource<List<City>>>()
     private val _listTypeSend = MutableLiveData<Resource<List<TypeSend>>>()
-    val listTypeSend: LiveData<Resource<List<TypeSend>>> = _listTypeSend
+    var listTypeSend: LiveData<Resource<List<TypeSend>>> = _listTypeSend
     val selector = MutableLiveData<Map<SelectorCode, Int>>()
     var listCity: LiveData<Resource<List<City>>> = _listCity
 
