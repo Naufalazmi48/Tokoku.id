@@ -11,7 +11,7 @@ interface TokoUseCase {
     suspend fun insertCart(cart: CartDomain)
     suspend fun deleteFromCart(cart: CartDomain)
     fun getListCity(): Flow<Resource<List<CityDomain>>>
-     fun getCost(
+    fun getCost(
         originId: String,
         destinationId: String,
         weightItem: Int,

@@ -14,11 +14,12 @@ class TokoIntercator(private val tokoRepository: ITokoRepository) : TokoUseCase 
 
     override suspend fun deleteFromCart(cart: CartDomain) = tokoRepository.deleteFromCart(cart)
     override fun getListCity(): Flow<Resource<List<CityDomain>>> = tokoRepository.getListCity()
-    override  fun getCost(
+    override fun getCost(
         originId: String,
         destinationId: String,
         weightItem: Int,
         courier: String
-    ): Flow<Resource<List<CostDomain>>> = tokoRepository.getCost(originId,destinationId,weightItem,courier)
+    ): Flow<Resource<List<CostDomain>>> =
+        tokoRepository.getCost(originId, destinationId, weightItem, courier)
 
 }

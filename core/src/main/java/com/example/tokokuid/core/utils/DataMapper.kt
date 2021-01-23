@@ -8,8 +8,8 @@ import com.example.tokokuid.core.domain.model.CartDomain
 import com.example.tokokuid.core.domain.model.CityDomain
 import com.example.tokokuid.core.domain.model.CostDomain
 import com.example.tokokuid.core.domain.model.CostItemDomain
-import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.core.modelpresentation.City
+import com.example.tokokuid.core.modelpresentation.Item
 import com.example.tokokuid.core.modelpresentation.TypeSend
 
 object DataMapper {
@@ -76,7 +76,7 @@ object DataMapper {
     fun mapCityDomainToPresentation(list: List<CityDomain>?): List<City> {
         val listCity = ArrayList<City>()
         list?.map {
-            if(it.cityName != null && it.cityId != null){
+            if (it.cityName != null && it.cityId != null) {
                 listCity.add(
                     City(
                         it.cityName,
